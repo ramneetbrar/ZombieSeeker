@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupLaunchGameScreen();
+        setupMainMenu();
     }
 
     private void setupLaunchGameScreen() {
@@ -39,6 +40,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = GameScreen.makeLaunchIntent(MainActivity.this);
                 startActivity(i);
+            }
+        });
+    }
+
+    private void setupMainMenu() {
+        Button button = findViewById(R.id.buttonMainMenu);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openMainMenu = new Intent(MainActivity.this, MainMenu.class);
+                startActivity(openMainMenu);
             }
         });
     }
