@@ -6,4 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".WelcomeScreen">
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/zombieImageGif"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#1F7D70"
+        android:src="@drawable/zombie_anim"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/btnSkipWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Skip Intro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/authorNames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="By: Ramneet Brar and Riya Dhariwal"
+        android:textColor="#FFFFFF"
+        android:textStyle="italic"
+        android:typeface="normal"
+        app:fontFamily="sans-serif-condensed-light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Zombie Slayer"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:fontFamily="sans-serif-smallcaps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/zombieImageGif" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
