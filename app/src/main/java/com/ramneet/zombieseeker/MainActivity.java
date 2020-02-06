@@ -3,6 +3,7 @@ package com.ramneet.zombieseeker;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,59 +29,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        populateButtons();
+        setupLaunchGameScreen();
     }
 
-
-    private void populateButtons() {
-        TableLayout table = (TableLayout) findViewById(R.id.tableForButtons);
-
-        for (int row = 0; row < NUM_ROWS; row++) {
-            TableRow tableRow = new TableRow(this);
-            tableRow.setLayoutParams(new TableLayout.LayoutParams(
-                    TableLayout.LayoutParams.MATCH_PARENT,
-                    TableLayout.LayoutParams.MATCH_PARENT,
-                    1.0f));
-            table.addView(tableRow);
-
-            for (int col = 0; col < NUM_COLS; col++){
-                final int FINAL_COL = col;
-                final int FINAL_ROW = row;
-
-                Button button = new Button(this);
-                button.setLayoutParams(new TableRow.LayoutParams(
-                        TableRow.LayoutParams.MATCH_PARENT,
-                        TableRow.LayoutParams.MATCH_PARENT,
-                        1.0f));
-
-                // Make text not clip on small buttons
-                button.setPadding(0, 0, 0, 0);
-
-                button.setOnClickListener(new View.OnClickListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-                    @Override
-                    public void onClick(View v) {
-                        gridButtonClicked(FINAL_COL, FINAL_ROW);
-                    }
-                });
-
-                tableRow.addView(button);
-                buttons[row][col] = button;
+    private void setupLaunchGameScreen() {
+        Button button = findViewById(R.id.buttonLaunchGameScreen);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = GameScreen.makeLaunchIntent(MainActivity.this);
+                startActivity(i);
             }
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void gridButtonClicked(int col, int row) {
-        Toast.makeText(this, "Button clicked: " + col + "," + row,
-                Toast.LENGTH_SHORT).show();
-        Button button = buttons[row][col];
-
-        //if (!zombiePresent or (zombiePresent and zombieShown) ) {
-        // button.setText(numZombiesRow + numZombiesCol);
-        //}
-
-
+        });
     }
 
 }
