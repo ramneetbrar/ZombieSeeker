@@ -4,26 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameScreen">
+    android:background="@drawable/zombie_background"
+    tools:context=".MainActivity">
+    <!--    tools:context=".GameScreen"/>-->
 
-    <Button
-        android:id="@+id/buttonLaunchGameScreen"
+    <ImageView
+        android:id="@+id/bloodSplatter2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Launch Game Screen"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="344dp"
+        android:layout_marginRight="344dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/blood_splatter" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="312dp"
+        android:layout_marginLeft="312dp"
+        android:layout_marginTop="164dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/blood_splatter" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="24dp"
+        android:text="Main \nMenu"
+        android:textColor="#690C0C"
+        android:textColorLink="#00800707"
+        android:textSize="80sp"
+        android:typeface="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonMainMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="82dp"
-        android:layout_marginLeft="82dp"
-        android:layout_marginTop="153dp"
-        android:text="Button"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/helpButton"
+        android:layout_width="99dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginRight="104dp"
+        android:background="#690C0C"
+        android:text="@string/help"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/optionsButton" />
+
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="99dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginRight="104dp"
+        android:background="#690C0C"
+        android:text="@string/play"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/optionsButton"
+        android:layout_width="99dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginRight="104dp"
+        android:background="#690C0C"
+        android:text="@string/options"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+

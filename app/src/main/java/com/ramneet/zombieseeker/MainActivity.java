@@ -33,27 +33,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
 
         setupLaunchGameScreen();
-        setupMainMenu();
+//        setupMainMenu();
     }
 
     private void setupLaunchGameScreen() {
-        Button button = findViewById(R.id.buttonLaunchGameScreen);
+        Button button = findViewById(R.id.playButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = GameScreen.makeLaunchIntent(MainActivity.this);
                 startActivity(i);
-            }
-        });
-    }
-
-    private void setupMainMenu() {
-        Button button = findViewById(R.id.buttonMainMenu);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent openMainMenu = new Intent(MainActivity.this, MainMenu.class);
-                startActivity(openMainMenu);
             }
         });
     }
