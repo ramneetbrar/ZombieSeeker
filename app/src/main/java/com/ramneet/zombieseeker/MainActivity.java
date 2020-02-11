@@ -1,6 +1,6 @@
 package com.ramneet.zombieseeker;
 
-import androidx.annotation.RequiresApi;
+//import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
