@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
 
         setupLaunchGameScreen();
+        setupHelpScreen();
 //        setupMainMenu();
     }
 
@@ -43,6 +44,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = GameScreen.makeLaunchIntent(MainActivity.this);
                 startActivity(i);
+            }
+        });
+    }
+
+    private void setupHelpScreen() {
+        Button button = findViewById(R.id.helpButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HelpScreen.class);
+                startActivity(intent);
             }
         });
     }

@@ -4,4 +4,8 @@
     <string name="help">Help</string>
     <string name="options">Options</string>
     <string name="play">Play</string>
+    <string name="home_page_link"><a href="https://www.opencoursehub.cs.sfu.ca/bfraser/grav-cms/cmpt276/home">
+        About the authors</a></string>
+    <string name="gameDescriptionString">Welcome to zombie slayer. You are the last known survivor of the human race and it is up to you to hunt and kill all of the zombies. Tap on the tiles to try to find all of the zombies. Once you have located all zombies, you will have saved humanity. Good luck.</string>
+
 </resources>
