@@ -63,4 +63,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="195dp"
+        android:layout_height="231dp"
+        android:layout_marginStart="616dp"
+        android:layout_marginLeft="616dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/bloodSplatter1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/spot_blood_drip" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
