@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupLaunchGameScreen();
         setupHelpScreen();
+        setupOptionScreen();
 //        setupMainMenu();
     }
 
@@ -58,5 +59,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void setupOptionScreen() {
+        Button button = findViewById(R.id.optionsButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = OptionScreen.makeLaunchIntent(MainActivity.this);
+                startActivity(i);
+            }
+        });
+    }
+
 
 }

@@ -81,4 +81,24 @@
         app:layout_constraintEnd_toStartOf="@+id/bloodSplatter3"
         app:srcCompat="@drawable/spot_blood_drip" />
 
+    <RadioGroup
+        android:id="@+id/radio_group_num_zombies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/chooseBoardText"
+        app:layout_constraintStart_toStartOf="@+id/chooseBoardText"
+        app:layout_constraintTop_toBottomOf="@+id/chooseBoardText" />
+
+    <Button
+        android:id="@+id/save_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
