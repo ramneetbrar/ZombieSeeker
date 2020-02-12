@@ -1,20 +1,13 @@
 package com.ramneet.zombieseeker;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
-
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Animatable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
-
-import pl.droidsonroids.gif.GifDecoder;
-import pl.droidsonroids.gif.GifDrawable;
+import androidx.appcompat.app.AppCompatActivity;
 import pl.droidsonroids.gif.GifImageView;
 
 public class WelcomeScreen extends AppCompatActivity {

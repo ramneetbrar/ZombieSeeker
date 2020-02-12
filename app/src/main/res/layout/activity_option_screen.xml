@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zombie_background"
+    tools:context=".OptionScreen">
+
+    <ImageView
+        android:id="@+id/bloodSplatter2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="228dp"
+        android:layout_marginEnd="344dp"
+        android:layout_marginRight="344dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/blood_splatter" />
+
+    <ImageView
+        android:id="@+id/bloodSplatter1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="308dp"
+        android:layout_marginLeft="308dp"
+        android:layout_marginTop="240dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/blood_splatter" />
+
+    <TextView
+        android:id="@+id/chooseZombieText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginRight="124dp"
+        android:text="@string/your_zombies"
+        android:textColor="#690C0C"
+        android:textColorLink="#00800707"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/chooseBoardText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/your_board_size"
+        android:textColor="#690C0C"
+        android:textColorLink="#00800707"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bloodSplatter3"
+        android:layout_width="195dp"
+        android:layout_height="231dp"
+        android:layout_marginStart="592dp"
+        android:layout_marginLeft="592dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/bloodSplatter1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/spot_blood_drip" />
+
+    <ImageView
+        android:id="@+id/bloodSplatter"
+        android:layout_width="175dp"
+        android:layout_height="198dp"
+        android:layout_marginEnd="456dp"
+        android:layout_marginRight="456dp"
+        android:layout_marginBottom="96dp"
+        app:layout_constraintBottom_toTopOf="@+id/bloodSplatter2"
+        app:layout_constraintEnd_toStartOf="@+id/bloodSplatter3"
+        app:srcCompat="@drawable/spot_blood_drip" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

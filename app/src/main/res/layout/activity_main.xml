@@ -15,7 +15,7 @@
         android:layout_marginTop="228dp"
         android:layout_marginEnd="344dp"
         android:layout_marginRight="344dp"
-        android:contentDescription="Blood splatter image on right side"
+        android:contentDescription="@string/blood_splatter_image_on_right_side"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/blood_splatter" />
@@ -27,7 +27,7 @@
         android:layout_marginStart="308dp"
         android:layout_marginLeft="308dp"
         android:layout_marginTop="240dp"
-        android:contentDescription="Blood splatter image on left side"
+        android:contentDescription="@string/blood_splatter_image_on_left_side"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/blood_splatter" />
