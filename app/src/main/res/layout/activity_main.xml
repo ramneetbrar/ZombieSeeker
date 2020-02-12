@@ -42,8 +42,8 @@
         android:text="Main \nMenu"
         android:textColor="#690C0C"
         android:textColorLink="#00800707"
-        android:textSize="80sp"
         android:typeface="monospace"
+        android:textSize="80sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
