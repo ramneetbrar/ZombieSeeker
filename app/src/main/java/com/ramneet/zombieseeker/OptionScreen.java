@@ -54,6 +54,11 @@ public class OptionScreen extends AppCompatActivity {
 
             // add to radio group:
             group.addView(button);
+
+            // Select default button:
+            if (numZombie == getNumZombiesChosen(this)) {
+                button.setChecked(true);
+            }
         }
 
     }
@@ -68,7 +73,8 @@ public class OptionScreen extends AppCompatActivity {
     public static int getNumZombiesChosen(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("AppPrefs", MODE_PRIVATE);
         // TODO: change default value
-        return prefs.getInt("numZombiesChosen", 0);
+        int defaultZombie = context.getResources().getInteger(R.integer.default_num_zombies);
+        return prefs.getInt("numZombiesChosen", defaultZombie);
 
     }
 
@@ -84,6 +90,8 @@ public class OptionScreen extends AppCompatActivity {
 
                 Toast.makeText(OptionScreen.this, "Selected Button's text is: " + message, Toast.LENGTH_SHORT)
                         .show();
+
+                finish();
             }
         });
     }
