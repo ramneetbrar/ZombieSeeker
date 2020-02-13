@@ -1,12 +1,32 @@
 package com.ramneet.zombieseeker;
 
-import java.util.Objects;
-
 class Cell {
     private int row;
     private int column;
     private boolean hasZombie;
+    private boolean hasScan;
     private boolean isClicked; //then in the ui, if this is true, it'll print, else, it wont
+    private int scanOfZombies;
+
+    public boolean isClicked() {
+        return isClicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        isClicked = clicked;
+    }
+
+    public boolean hasZombie() {
+        return hasZombie;
+    }
+
+    public void setHasScan(boolean hasScan) {
+        this.hasScan = hasScan;
+    }
+
+    public void setScanOfZombies(int scanOfZombies) {
+        this.scanOfZombies = scanOfZombies;
+    }
 
     public int getRow() {
         return row;
@@ -16,11 +36,13 @@ class Cell {
         return column;
     }
 
-    public Cell(int row, int column, boolean hasZombie, boolean isClicked) {
+    public Cell(int row, int column, boolean hasZombie, boolean isClicked, boolean hasScan, int scanOfZombies) {
         this.row = row;
         this.column = column;
         this.hasZombie = hasZombie;
         this.isClicked = isClicked;
+        this.hasScan = hasScan;
+        this.scanOfZombies = scanOfZombies;
     }
 
     @Override

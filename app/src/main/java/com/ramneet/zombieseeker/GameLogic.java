@@ -1,53 +1,74 @@
 package com.ramneet.zombieseeker;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 public class GameLogic {
-    //default row and column
-    private int row = 4;
-    private int column = 7;
-    private ArrayList<ArrayList<Cell>> gameBoard = new ArrayList<>();
-    private ArrayList<Cell> zombies = new ArrayList<>();
 
-    //to get the row and column info from what the user inputs in option
-    public void initializeRowAndColumn(int row, int column){
-        this.row = row;
-        this.column = column;
+    private int row;
+    private int column;
+    private Cell gameBoard[][];
+    private int totalZombies;
+    private int currentZombiesCounter;
+
+    public void playGame(Cell userInput){
+        while (currentZombiesCounter != totalZombies){
+            updateUserInputInGameBoard(userInput);
+        }
     }
 
-    //lmao im tired and cant figure out how to add an element to a 2d arraylist. i was doing
-    // [row][col] but then forgot thats for arrays
+    public GameLogic(int row, int column, int totalZombies) {
+        this.row = row;
+        this.column = column;
+        this.gameBoard = new Cell[row][column];
+        this.totalZombies = totalZombies;
+    }
 
-//    public void inputZombies(){
-//        for (Cell zombie : zombies) {
-//           gameBoard.add(zombie.getRow()).add(zombie.getColumn())
-//        }
-//        for (int i = 0; i < zombies.size(); i++) {
-//            gameBoard.get(zombies.get(i).getRow()).get(zombies.get(i).getColumn()) = zombies.get(i);
-//        }
-//    }
+    public void initializeGameBoard(){
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                insertCellInGameBoard(new Cell(i, j, false, false, false, 0));
+            }
+        }
+        currentZombiesCounter = 0;
+    }
 
-    public void initializeZombies(int numberOfZombies) {
-        zombies.clear(); //to make sure that we're not fucking up by inputting new zombies in an old array
+    public void updateUserInputInGameBoard(Cell userInput){
+        Cell userInputInGameBoard = gameBoard[userInput.getRow()][userInput.getColumn()];
+
+        if (userInputInGameBoard.hasZombie()){
+            if (userInputInGameBoard.isClicked()){
+                userInputInGameBoard.setHasScan(true);
+                userInputInGameBoard.setScanOfZombies(scanZombies(userInputInGameBoard));
+                insertCellInGameBoard(userInputInGameBoard);
+            } else {
+                userInputInGameBoard.setClicked(true);
+                insertCellInGameBoard(userInputInGameBoard);
+                currentZombiesCounter++;
+            }
+        } else {
+            userInputInGameBoard.setClicked(true);
+            userInputInGameBoard.setHasScan(true);
+            userInputInGameBoard.setScanOfZombies(scanZombies(userInputInGameBoard));
+            insertCellInGameBoard(userInputInGameBoard);
+        }
+    }
+
+    public int scanZombies(Cell cell){
         int zombieCounter = 0;
-        while (zombieCounter != numberOfZombies) {
-            int zombieRow = new Random().nextInt(row);
-            int zombieColumn = new Random().nextInt(column);
-            Cell zombieCell = new Cell(zombieRow, zombieColumn, true, false);
-            if (isUniqueZombie(zombieCell)){
-                zombies.add(zombieCell);
+        for (int i = 0; i < column; i++) {
+            if (gameBoard[cell.getRow()][i].hasZombie()){
                 zombieCounter++;
             }
         }
-    }
 
-    private boolean isUniqueZombie(Cell zombieCell) {
-        for (Cell zombie : zombies) {
-            if (zombieCell.equals(zombie)){
-                return false;
+        for (int i = 0; i < row; i++) {
+            if (gameBoard[i][cell.getColumn()].hasZombie()){
+                zombieCounter++;
             }
         }
-        return false;
+        return zombieCounter;
     }
+
+    public void insertCellInGameBoard(Cell cell){
+        gameBoard[cell.getRow()][cell.getColumn()] = cell;
+    }
+
 }
