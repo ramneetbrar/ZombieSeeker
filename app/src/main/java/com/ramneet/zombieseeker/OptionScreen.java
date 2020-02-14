@@ -1,7 +1,6 @@
 package com.ramneet.zombieseeker;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class OptionScreen extends AppCompatActivity {

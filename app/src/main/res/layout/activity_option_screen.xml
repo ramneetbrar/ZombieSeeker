@@ -14,7 +14,6 @@
         android:layout_marginTop="228dp"
         android:layout_marginEnd="344dp"
         android:layout_marginRight="344dp"
-        android:contentDescription="Blood splatter image on right side"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/blood_splatter" />
@@ -26,7 +25,6 @@
         android:layout_marginStart="308dp"
         android:layout_marginLeft="308dp"
         android:layout_marginTop="240dp"
-        android:contentDescription="Blood splatter image on left side"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/blood_splatter" />
@@ -38,7 +36,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="124dp"
         android:layout_marginRight="124dp"
-        android:text="Your zombies"
+        android:text="@string/your_zombies"
         android:textColor="#690C0C"
         android:textColorLink="#00800707"
         android:textStyle="bold"
@@ -53,7 +51,7 @@
         android:layout_marginStart="76dp"
         android:layout_marginLeft="76dp"
         android:layout_marginTop="64dp"
-        android:text="Your board size"
+        android:text="@string/your_board_size"
         android:textColor="#690C0C"
         android:textColorLink="#00800707"
         android:textStyle="bold"
