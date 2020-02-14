@@ -15,6 +15,10 @@
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".OptionScreen"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".HelpScreen"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape" />
