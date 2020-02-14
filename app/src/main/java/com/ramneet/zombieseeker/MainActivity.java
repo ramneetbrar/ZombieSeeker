@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int NUM_ROWS = 5;
     private static final int NUM_COLS = 5;
+    private static int NUM_ZOMBIES = 10;
 
     Button buttons[][] = new Button[NUM_ROWS][NUM_COLS];
 
@@ -34,8 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
         setupLaunchGameScreen();
         setupHelpScreen();
+        setupOptionScreen();
+        refreshScreen();
 //        setupMainMenu();
     }
+
 
     private void setupLaunchGameScreen() {
         Button button = findViewById(R.id.playButton);
@@ -59,4 +63,26 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void setupOptionScreen() {
+        Button button = findViewById(R.id.optionsButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = OptionScreen.makeLaunchIntent(MainActivity.this);
+                startActivity(i);
+            }
+        });
+    }
+
+    private void refreshScreen() {
+        // refresh num zombies
+        NUM_ZOMBIES = OptionScreen.getNumZombiesChosen(this);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshScreen();
+    }
 }
