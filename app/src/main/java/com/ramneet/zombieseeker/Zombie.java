@@ -27,6 +27,10 @@ public class Zombie {
         }
     }
 
+    public ArrayList<Cell> getZombies() {
+        return zombies;
+    }
+
     private boolean isUniqueZombie(Cell zombieCell) {
         for (Cell zombie : zombies) {
             if (zombieCell.equals(zombie)){

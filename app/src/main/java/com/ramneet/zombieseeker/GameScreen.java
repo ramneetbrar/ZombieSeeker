@@ -13,12 +13,18 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class GameScreen extends AppCompatActivity {
 
-    private static final int NUM_ROWS = 5;
-    private static final int NUM_COLS = 5;
+    private static final int NUM_ROWS = 4;
+    private static final int NUM_COLS = 6;
+    private static final int NUM_ZOMBIES = 6;
 
     Button buttons[][] = new Button[NUM_ROWS][NUM_COLS];
+    Cell gameBoard[][];
+    GameLogic gameLogic = new GameLogic(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
+
 
     public static Intent makeLaunchIntent(Context context) {
         Intent intent = new Intent(context, GameScreen.class);
@@ -31,6 +37,10 @@ public class GameScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
+
+        //gameLogic = new GameLogic(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
+
+
 
         populateButtons();
 
@@ -53,6 +63,7 @@ public class GameScreen extends AppCompatActivity {
                 final int FINAL_ROW = row;
 
                 Button button = new Button(this);
+                //button.setBackgroundResource(R.drawable.zombie_walking);
                 button.setLayoutParams(new TableRow.LayoutParams(
                         TableRow.LayoutParams.MATCH_PARENT,
                         TableRow.LayoutParams.MATCH_PARENT,
@@ -81,10 +92,19 @@ public class GameScreen extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
         Button button = buttons[row][col];
 
-        //if (!zombiePresent or (zombiePresent and zombieShown) ) {
-        // button.setText(numZombiesRow + numZombiesCol);
-        //}
+        gameLogic.updateUserInputInGameBoard(row, col);
+        //Cell cell = gameLogic.getCellFromGameBoard(row, col);
 
+//        if (cell.hasZombie() && !cell.isClicked()) {
+//            button.setBackgroundResource(R.drawable.zombie_walking);
+//            gameLogic.updateScans(cell);
+//        }
+//        if (!cell.hasZombie() || (cell.hasZombie() && cell.isClicked()) ){
+//            gameLogic.scanZombies(cell);
+//            int numZombiesInScan = cell.getScanOfZombies();
+//            button.setText(numZombiesInScan + "");
+//        }
 
     }
+
 }

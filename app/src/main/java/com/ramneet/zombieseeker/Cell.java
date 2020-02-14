@@ -20,12 +20,20 @@ class Cell {
         return hasZombie;
     }
 
+    public boolean hasScan() {
+        return hasScan;
+    }
+
     public void setHasScan(boolean hasScan) {
         this.hasScan = hasScan;
     }
 
     public void setScanOfZombies(int scanOfZombies) {
         this.scanOfZombies = scanOfZombies;
+    }
+
+    public int getScanOfZombies() {
+        return scanOfZombies;
     }
 
     public int getRow() {
