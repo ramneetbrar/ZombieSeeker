@@ -11,5 +11,5 @@
     <string name="your_board_size">Your board size</string>
     <string name="blood_splatter_image_on_right_side">Blood splatter image on right side</string>
     <string name="blood_splatter_image_on_left_side">Blood splatter image on left side</string>
-
+    <string name="zombies">"%1$d zombies"</string>
 </resources>

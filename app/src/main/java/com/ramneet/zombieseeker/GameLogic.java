@@ -45,6 +45,7 @@ public class GameLogic {
                 userInputInGameBoard.setScanOfZombies(scanZombies(userInputInGameBoard));
                 insertCellInGameBoard(userInputInGameBoard);
             } else {
+                //need to keep updating the cells to decrement
                 userInputInGameBoard.setClicked(true);
                 updateScans(userInputInGameBoard);
                 insertCellInGameBoard(userInputInGameBoard);

@@ -14,6 +14,10 @@
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".OptionScreen"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".HelpScreen"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape" />
@@ -27,8 +31,10 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
