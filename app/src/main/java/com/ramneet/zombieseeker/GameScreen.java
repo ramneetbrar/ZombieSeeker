@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -20,11 +21,10 @@ public class GameScreen extends AppCompatActivity {
     private static final int NUM_ROWS = 4;
     private static final int NUM_COLS = 6;
     private static final int NUM_ZOMBIES = 6;
+    private static final String TAG = "GameScreen";
 
     Button buttons[][] = new Button[NUM_ROWS][NUM_COLS];
-    Cell gameBoard[][];
-    GameLogic gameLogic = new GameLogic(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
-
+    GameLogic gameLogic;
 
     public static Intent makeLaunchIntent(Context context) {
         Intent intent = new Intent(context, GameScreen.class);
@@ -38,10 +38,7 @@ public class GameScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
 
-        //gameLogic = new GameLogic(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
-
-
-
+        gameLogic = new GameLogic(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
         populateButtons();
 
     }
@@ -73,10 +70,11 @@ public class GameScreen extends AppCompatActivity {
                 button.setPadding(0, 0, 0, 0);
 
                 button.setOnClickListener(new View.OnClickListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onClick(View v) {
-                        gridButtonClicked(FINAL_COL, FINAL_ROW);
+                        Log.e(TAG, "After button clicked, in setOnClickListener");
+
+                        gridButtonClicked(FINAL_ROW, FINAL_COL);
                     }
                 });
 
@@ -86,25 +84,25 @@ public class GameScreen extends AppCompatActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void gridButtonClicked(int col, int row) {
+    private void gridButtonClicked(int row, int col) {
+        Log.e(TAG, "After button clicked, in gridButton method");
         Toast.makeText(this, "Button clicked: " + col + "," + row,
                 Toast.LENGTH_SHORT).show();
         Button button = buttons[row][col];
 
-        gameLogic.updateUserInputInGameBoard(row, col);
-        //Cell cell = gameLogic.getCellFromGameBoard(row, col);
 
-//        if (cell.hasZombie() && !cell.isClicked()) {
-//            button.setBackgroundResource(R.drawable.zombie_walking);
-//            gameLogic.updateScans(cell);
-//        }
-//        if (!cell.hasZombie() || (cell.hasZombie() && cell.isClicked()) ){
-//            gameLogic.scanZombies(cell);
-//            int numZombiesInScan = cell.getScanOfZombies();
-//            button.setText(numZombiesInScan + "");
-//        }
+        Cell cell = new Cell(row, col, false, false, false, 0);
+        if (cell.hasZombie() && !cell.isClicked()) {
+            button.setBackgroundResource(R.drawable.zombie_walking);
+            gameLogic.updateScans(cell);
+        }
+        if (!cell.hasZombie() || (cell.hasZombie() && cell.isClicked()) ){
+            gameLogic.scanZombies(cell);
+            int numZombiesInScan = cell.getScanOfZombies();
+            button.setText(numZombiesInScan + "");
+        }
 
     }
+
 
 }

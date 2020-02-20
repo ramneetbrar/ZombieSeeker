@@ -34,8 +34,10 @@ public class GameLogic {
         currentZombiesCounter = 0;
     }
 
-    public void updateUserInputInGameBoard(int row, int col){
-        Cell userInputInGameBoard = gameBoard[row][col];
+    public void updateUserInputInGameBoard(Cell userInput){
+        //Cell userInputInGameBoard = gameBoard[row][col];
+        Cell userInputInGameBoard = gameBoard[userInput.getRow()][userInput.getColumn()];
+
 
         if (userInputInGameBoard.hasZombie()){
             if (userInputInGameBoard.isClicked()){
@@ -54,6 +56,10 @@ public class GameLogic {
             userInputInGameBoard.setScanOfZombies(scanZombies(userInputInGameBoard));
             insertCellInGameBoard(userInputInGameBoard);
         }
+    }
+
+    public void incrementZombiesCounter(){
+        currentZombiesCounter++;
     }
 
 
