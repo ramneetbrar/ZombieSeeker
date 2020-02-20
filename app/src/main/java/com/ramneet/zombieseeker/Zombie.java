@@ -5,7 +5,11 @@ import java.util.Random;
 
 public class Zombie {
 
-    private ArrayList<Cell> zombies = new ArrayList<>();
+    private ArrayList<Cell> zombies;
+
+    public Zombie(ArrayList<Cell> zombies) {
+        this.zombies = zombies;
+    }
 
     public void inputZombies(Cell gameBoard[][]){
         for (Cell zombie : zombies) {
@@ -13,7 +17,7 @@ public class Zombie {
         }
     }
 
-    public void initializeZombies(int numberOfZombies, int row, int column) {
+    public void initializeZombies(int row, int column, int numberOfZombies, Cell gameBoard[][]) {
         zombies.clear(); //to make sure that we're not fucking up by inputting new zombies in an old array
         int zombieCounter = 0;
         while (zombieCounter != numberOfZombies) {
@@ -25,6 +29,7 @@ public class Zombie {
                 zombieCounter++;
             }
         }
+        inputZombies(gameBoard);
     }
 
     public ArrayList<Cell> getZombies() {

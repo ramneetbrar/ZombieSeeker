@@ -15,6 +15,7 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameScreen extends AppCompatActivity {
 
@@ -39,6 +40,8 @@ public class GameScreen extends AppCompatActivity {
         setContentView(R.layout.activity_game_screen);
 
         gameLogic = new GameLogic(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
+        gameLogic.initializeGameBoard(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
+        //gameLogic.setupZombies();
         populateButtons();
 
     }
@@ -91,7 +94,7 @@ public class GameScreen extends AppCompatActivity {
         Button button = buttons[row][col];
 
 
-        Cell cell = new Cell(row, col, false, false, false, 0);
+        Cell cell = gameLogic.getCellFromGameBoard(row,col);
         if (cell.hasZombie() && !cell.isClicked()) {
             button.setBackgroundResource(R.drawable.zombie_walking);
             gameLogic.updateScans(cell);
@@ -103,6 +106,7 @@ public class GameScreen extends AppCompatActivity {
         }
 
     }
+
 
 
 }

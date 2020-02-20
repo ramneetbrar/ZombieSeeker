@@ -1,5 +1,7 @@
 package com.ramneet.zombieseeker;
 
+import java.util.ArrayList;
+
 public class GameLogic {
 
     private int row;
@@ -19,19 +21,26 @@ public class GameLogic {
         this.column = column;
         this.gameBoard = new Cell[row][column];
         this.totalZombies = totalZombies;
+        //initializeGameBoard(row, column, totalZombies);
     }
 
     public Cell[][] getGameBoard() {
         return gameBoard;
     }
 
-    public void initializeGameBoard(){
+    public void initializeGameBoard(int row, int column, int totalZombies){
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
                 insertCellInGameBoard(new Cell(i, j, false, false, false, 0));
             }
         }
         currentZombiesCounter = 0;
+    }
+
+    public void setupZombies() {
+        ArrayList<Cell> zombies = new ArrayList<>();
+        Zombie zombie = new Zombie(zombies);
+        zombie.initializeZombies(row, column, totalZombies, gameBoard);
     }
 
     public void updateUserInputInGameBoard(Cell userInput){
