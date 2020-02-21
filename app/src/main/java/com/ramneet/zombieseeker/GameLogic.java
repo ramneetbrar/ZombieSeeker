@@ -12,22 +12,6 @@ public class GameLogic {
     private int totalZombies;
     private int currentZombiesCounter;
 
-//    public static void main(String[] args) {
-//        GameLogic gameLogic = new GameLogic(4, 6,6);
-//        gameLogic.initializeGameBoard(4, 6, 6);
-//
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 6; j++) {
-//                System.out.println(gameLogic.gameBoard[i][j]);
-//            }
-//        }
-//    }
-//    public void playGame(Cell userInput){
-//        while (currentZombiesCounter != totalZombies){
-//            updateUserInputInGameBoard(userInput);
-//        }
-//    }
-
     public GameLogic(int row, int column, int totalZombies) {
         this.row = row;
         this.column = column;
@@ -60,7 +44,6 @@ public class GameLogic {
         //Cell userInputInGameBoard = gameBoard[row][col];
         Cell userInputInGameBoard = gameBoard[userInput.getRow()][userInput.getColumn()];
 
-
         if (userInputInGameBoard.hasZombie()){
             if (userInputInGameBoard.isClicked()){
                 userInputInGameBoard.setHasScan(true);
@@ -85,17 +68,16 @@ public class GameLogic {
         currentZombiesCounter++;
     }
 
-
     public int scanZombies(Cell cell){
         int zombieCounter = 0;
         for (int i = 0; i < column; i++) {
-            if (gameBoard[cell.getRow()][i].hasZombie()){
+            if (gameBoard[cell.getRow()][i].hasZombie() && !gameBoard[cell.getRow()][i].isClicked()){
                 zombieCounter++;
             }
         }
 
         for (int i = 0; i < row; i++) {
-            if (gameBoard[i][cell.getColumn()].hasZombie()){
+            if (gameBoard[i][cell.getColumn()].hasZombie() && !gameBoard[i][cell.getColumn()].isClicked()){
                 zombieCounter++;
             }
         }
@@ -114,17 +96,15 @@ public class GameLogic {
         for (int i = 0; i <column; i++) {
             if (gameBoard[cell.getRow()][i].hasScan()) {
                 int temp = cell.getScanOfZombies();
-                cell.setScanOfZombies(temp-1);
+                cell.setScanOfZombies(temp - 1);
             }
         }
 
         for (int i = 0; i <row; i++) {
             if (gameBoard[i][cell.getColumn()].hasScan()) {
                 int temp = cell.getScanOfZombies();
-                cell.setScanOfZombies(temp-1);
+                cell.setScanOfZombies(temp - 1);
             }
         }
     }
-
-
 }

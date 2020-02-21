@@ -25,17 +25,14 @@ public class Zombie {
     }
 
     public void initializeZombies(int row, int column, int numberOfZombies, Cell gameBoard[][]) {
-        zombies.clear(); //to make sure that we're not fucking up by inputting new zombies in an old array
+        zombies.clear();
         int zombieCounter = 0;
         while (zombieCounter != numberOfZombies) {
-//            System.out.println("hello");
             int zombieRow = new Random().nextInt(row);
             int zombieColumn = new Random().nextInt(column);
             Cell zombieCell = new Cell(zombieRow, zombieColumn, true, false, false, 0);
-//            System.out.println("row is: " + zombieRow + " col is: " + zombieColumn);
             zombieCounter++;
             if (isUniqueZombie(zombieCell)){
-//                System.out.println("hello");
                 zombies.add(zombieCell);
                 zombieCounter++;
             }
@@ -44,11 +41,8 @@ public class Zombie {
     }
 
     private boolean isUniqueZombie(Cell zombieCell) {
-//        System.out.println("zombie list: ");
-//        System.out.println(zombies);
         for (Cell zombie : zombies) {
             if (zombieCell.equals(zombie)){
-//                System.out.println("in false");
                 return false;
             }
         }
