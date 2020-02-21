@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -138,6 +139,10 @@ public class GameScreen extends AppCompatActivity {
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
             Resources resource = getResources();
             button.setBackground(new BitmapDrawable(resource, scaledBitmap));
+            // Code tutorial from: https://www.stechies.com/add-sound-play-button-click/
+            // MP3 Sound Citation: http://soundbible.com/944-Stab.html
+            final MediaPlayer mp = MediaPlayer.create(this, R.raw.zombie_stab);
+            mp.start();
             if (updatedCell.isClicked()) {
                 int zombieScan = updatedCell.getScanOfZombies();
                 button.setText(zombieScan + "");
