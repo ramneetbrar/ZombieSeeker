@@ -2,6 +2,10 @@ package com.ramneet.zombieseeker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,7 +38,6 @@ public class GameScreen extends AppCompatActivity {
 
         gameLogic = new GameLogic(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
         gameLogic.initializeGameBoard(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
-        gameLogic.setupZombies();
         populateButtons();
     }
 
@@ -85,7 +88,12 @@ public class GameScreen extends AppCompatActivity {
 
         Cell cell = gameLogic.getCellFromGameBoard(row,col);
         if (cell.hasZombie() && !cell.isClicked()) {
-            button.setBackgroundResource(R.drawable.zombie_walking);
+            int newWidth = button.getWidth();
+            int newHeight = button.getHeight();
+            Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.zombie_walking);
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
+            Resources resource = getResources();
+            button.setBackground(new BitmapDrawable(resource, scaledBitmap));
             gameLogic.updateScans(cell);
         }
         if (!cell.hasZombie() || (cell.hasZombie() && cell.isClicked()) ){
