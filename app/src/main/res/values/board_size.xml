@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="board_size">
-        <item> </item>
-    </array>
+    <string-array name="board_size">
+        <item>4 x 6</item>
+        <item>5 x 10</item>
+        <item>6 x 15</item>
+    </string-array>
+
+    <string name="default_board_size">4 x 6</string>
 </resources>

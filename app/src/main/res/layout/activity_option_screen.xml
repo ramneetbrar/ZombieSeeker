@@ -86,9 +86,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="@+id/chooseBoardText"
-        app:layout_constraintStart_toStartOf="@+id/chooseBoardText"
-        app:layout_constraintTop_toBottomOf="@+id/chooseBoardText" />
+        app:layout_constraintEnd_toEndOf="@+id/chooseZombieText"
+        app:layout_constraintStart_toStartOf="@+id/chooseZombieText"
+        app:layout_constraintTop_toBottomOf="@+id/chooseZombieText" />
 
     <Button
         android:id="@+id/save_selected"
@@ -100,5 +100,14 @@
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_board_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/chooseBoardText"
+        app:layout_constraintStart_toStartOf="@+id/chooseBoardText"
+        app:layout_constraintTop_toBottomOf="@+id/chooseBoardText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,14 +24,18 @@ public class OptionScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option_screen);
 
-        createRadioButtons();
+        createRadioButtonsNumZombies();
+        createRadioButtonsBoardSize();
         setupSaveSelectedButton();
 
-        int savedValue = getNumZombiesChosen(this);
-        Toast.makeText(this, "Saved value: " + savedValue, Toast.LENGTH_SHORT).show();
+        int savedZombie = getNumZombiesChosen(this);
+        String savedBoardSize = getBoardSizeChosen(this);
+
+        Toast.makeText(this, "Saved Zombie: " + savedZombie, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Saved Board Size: " + savedBoardSize, Toast.LENGTH_SHORT).show();
     }
 
-    private void createRadioButtons() {
+    private void createRadioButtonsNumZombies() {
         RadioGroup group = findViewById(R.id.radio_group_num_zombies);
         final int[] num_Zombies = getResources().getIntArray(R.array.num_zombies);
 
@@ -40,7 +44,7 @@ public class OptionScreen extends AppCompatActivity {
             final int numZombie = num_Zombies[i];
 
             RadioButton button = new RadioButton(this);
-//            button.setText(getString(R.string.zombies, numZombie));
+            button.setText(getString(R.string.zombies, numZombie));
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -63,19 +67,62 @@ public class OptionScreen extends AppCompatActivity {
 
     }
 
+    private void createRadioButtonsBoardSize() {
+        RadioGroup group = findViewById(R.id.radio_group_board_size);
+        final String[] board_sizes = getResources().getStringArray(R.array.board_size);
+
+        // Create the buttons:
+        for (int i = 0; i < board_sizes.length; i++ ) {
+            final String board_size = board_sizes[i];
+
+            RadioButton button = new RadioButton(this);
+            button.setText(board_size);
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(OptionScreen.this, "You clicked " + board_size + " board size.", Toast.LENGTH_SHORT)
+                            .show();
+                    saveBoardSizeChosen(board_size);
+                }
+            });
+
+            // add to radio group:
+            group.addView(button);
+
+            // Select default button
+            if (board_size.equals(getBoardSizeChosen(this))) {
+                button.setChecked(true);
+            }
+        }
+    }
+
+
     private void saveNumZombiesChosen(int numZombie) {
-        SharedPreferences prefs = this.getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        SharedPreferences prefs = this.getSharedPreferences("AppPrefsZombie", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("numZombiesChosen", numZombie);
         editor.apply();
     }
 
+    private void saveBoardSizeChosen(String board_size) {
+        SharedPreferences prefs = this.getSharedPreferences("AppPrefsBoard", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("boardSize", board_size);
+        editor.apply();
+    }
+
     public static int getNumZombiesChosen(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences("AppPrefs", MODE_PRIVATE);
-        // TODO: change default value
+        SharedPreferences prefs = context.getSharedPreferences("AppPrefsZombie", MODE_PRIVATE);
         int defaultZombie = context.getResources().getInteger(R.integer.default_num_zombies);
         return prefs.getInt("numZombiesChosen", defaultZombie);
 
+    }
+
+    public static String getBoardSizeChosen(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("AppPrefsBoard", MODE_PRIVATE);
+        String defaultBoardSize = context.getResources().getString(R.string.default_board_size);
+        return prefs.getString("boardSize", defaultBoardSize);
     }
 
     private void setupSaveSelectedButton() {
