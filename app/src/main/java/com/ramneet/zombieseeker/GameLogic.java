@@ -24,7 +24,7 @@ public class GameLogic {
         return gameBoard;
     }
 
-    public void initializeGameBoard(int row, int column, int totalZombies){
+    public void initializeGameBoard(int row, int column){
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
                 insertCellInGameBoard(new Cell(i, j, false, false, false, 0));

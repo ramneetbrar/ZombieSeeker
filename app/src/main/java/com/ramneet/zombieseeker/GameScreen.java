@@ -37,7 +37,7 @@ public class GameScreen extends AppCompatActivity {
         setContentView(R.layout.activity_game_screen);
 
         gameLogic = new GameLogic(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
-        gameLogic.initializeGameBoard(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
+        gameLogic.initializeGameBoard(NUM_ROWS, NUM_COLS);
         populateButtons();
     }
 

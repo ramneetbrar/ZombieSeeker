@@ -31,7 +31,6 @@ public class Zombie {
             int zombieRow = new Random().nextInt(row);
             int zombieColumn = new Random().nextInt(column);
             Cell zombieCell = new Cell(zombieRow, zombieColumn, true, false, false, 0);
-            zombieCounter++;
             if (isUniqueZombie(zombieCell)){
                 zombies.add(zombieCell);
                 zombieCounter++;
