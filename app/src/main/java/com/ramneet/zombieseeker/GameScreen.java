@@ -12,22 +12,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GameScreen extends AppCompatActivity {
 
-    private static final int NUM_ROWS = 4;
-    private static final int NUM_COLS = 6;
-    private static final int NUM_ZOMBIES = 6;
+    private static final String EXTRA_NUM_ROWS = "zombieseeker.gameScreen.numRows";
+    private static final String EXTRA_NUM_COLS = "zombieseeker.gameScreen.numCols";
+    private static final String EXTRA_NUM_ZOMBIES = "zombieseeker.gameScreen.numZombies";
+    private int num_rows = 4;
+    private int num_cols = 6;
+    private int num_zombies = 6;
     private static final String TAG = "GameScreen";
 
-    Button buttons[][] = new Button[NUM_ROWS][NUM_COLS];
+    Button[][] buttons;
     GameLogic gameLogic;
 
-    public static Intent makeLaunchIntent(Context context) {
+    public static Intent makeLaunchIntent(Context context, int rows, int cols, int numZombies) {
         Intent intent = new Intent(context, GameScreen.class);
+        intent.putExtra(EXTRA_NUM_ROWS, rows);
+        intent.putExtra(EXTRA_NUM_COLS, cols);
+        intent.putExtra(EXTRA_NUM_ZOMBIES, numZombies);
         return intent;
     }
 
@@ -36,15 +43,27 @@ public class GameScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_screen);
 
-        gameLogic = new GameLogic(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
-        gameLogic.initializeGameBoard(NUM_ROWS, NUM_COLS);
+        extractDataFromIntent();
+        String msg = "Rows: " + num_rows + " Cols: " + num_cols + " Zombies: " + num_zombies;
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+        buttons = new Button[num_rows][num_cols];
+
+        gameLogic = new GameLogic(num_rows, num_cols, num_zombies);
+        gameLogic.initializeGameBoard(num_rows, num_cols);
         populateButtons();
+    }
+
+    private void extractDataFromIntent() {
+        Intent intent = getIntent();
+        num_rows = intent.getIntExtra(EXTRA_NUM_ROWS, 0);
+        num_cols = intent.getIntExtra(EXTRA_NUM_COLS, 0);
+        num_zombies = intent.getIntExtra(EXTRA_NUM_ZOMBIES, 0);
     }
 
     private void populateButtons() {
         TableLayout table = findViewById(R.id.tableForButtons);
 
-        for (int row = 0; row < NUM_ROWS; row++) {
+        for (int row = 0; row < num_rows; row++) {
             TableRow tableRow = new TableRow(this);
             tableRow.setLayoutParams(new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT,
@@ -52,7 +71,7 @@ public class GameScreen extends AppCompatActivity {
                     1.0f));
             table.addView(tableRow);
 
-            for (int col = 0; col < NUM_COLS; col++){
+            for (int col = 0; col < num_cols; col++){
                 final int FINAL_COL = col;
                 final int FINAL_ROW = row;
 
@@ -75,6 +94,7 @@ public class GameScreen extends AppCompatActivity {
                     }
                 });
                 tableRow.addView(button);
+                Log.e(TAG, "Row: " + row + "Col: " + col);
                 buttons[row][col] = button;
             }
         }
@@ -112,8 +132,8 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void lockButtonSizes() {
-        for (int row = 0; row < NUM_ROWS; row++) {
-            for (int col = 0; col < NUM_COLS; col++) {
+        for (int row = 0; row < num_rows; row++) {
+            for (int col = 0; col < num_cols; col++) {
                 Button button = buttons[row][col];
 
                 int width = button.getWidth();
@@ -136,7 +156,7 @@ public class GameScreen extends AppCompatActivity {
         int numScan;
 
 
-        for (int i = 0; i < NUM_COLS; i++) {
+        for (int i = 0; i < num_cols; i++) {
             temp = gameLogic.getCellFromGameBoard(cellRow, i);
             if (temp.hasScan() && (temp.getScanOfZombies()!= 0) ){
                 numScan = gameLogic.scanZombies(temp);
@@ -144,7 +164,7 @@ public class GameScreen extends AppCompatActivity {
             }
         }
 
-        for (int i = 0; i < NUM_ROWS; i++) {
+        for (int i = 0; i < num_rows; i++) {
             temp = gameLogic.getCellFromGameBoard(i, cellCol);
             if (temp.hasScan() && (temp.getScanOfZombies()!= 0) ){
                 numScan = gameLogic.scanZombies(temp);

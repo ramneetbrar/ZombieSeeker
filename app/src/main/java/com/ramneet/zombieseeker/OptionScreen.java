@@ -2,6 +2,7 @@ package com.ramneet.zombieseeker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -130,35 +131,53 @@ public class OptionScreen extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RadioGroup group = findViewById(R.id.radio_group_num_zombies);
-                int idOfSelected = group.getCheckedRadioButtonId();
-                RadioButton radioButton = findViewById(idOfSelected);
-                String message = radioButton.getText().toString();
+                RadioGroup group_num_zombies = findViewById(R.id.radio_group_num_zombies);
+                int idOfSelectedZombie = group_num_zombies.getCheckedRadioButtonId();
+                RadioButton radioButtonZombie = findViewById(idOfSelectedZombie);
+                String numZombies = radioButtonZombie.getText().toString();
 
-                Toast.makeText(OptionScreen.this, "Selected Button's text is: " + message, Toast.LENGTH_SHORT)
+                RadioGroup group_board_size = findViewById(R.id.radio_group_board_size);
+                int idOfSelectedBoardSize = group_board_size.getCheckedRadioButtonId();
+                RadioButton radioButtonBoardSize = findViewById(idOfSelectedBoardSize);
+                String boardSize = radioButtonBoardSize.getText().toString();
+                int rows = getRowFromBoardSize(boardSize);
+                int cols = getColFromBoardSize(boardSize);
+
+                Toast.makeText(OptionScreen.this, "NumZombies are: " + numZombies, Toast.LENGTH_SHORT)
                         .show();
 
+                Toast.makeText(OptionScreen.this, "Rows are: " + rows + " Cols are: " + cols, Toast.LENGTH_SHORT)
+                        .show();
+
+                // Extract Data from UI:
+
+                //Pass data back:
+                Intent intent = new Intent();
+                intent.putExtra("zombieseeker.optionScreen.numRows", rows);
+                intent.putExtra("zombieseeker.optionScreen.numCols", cols);
+                intent.putExtra("zombieseeker.optionScreen.numZombies", numZombies);
+                setResult(Activity.RESULT_OK, intent);
                 finish();
             }
         });
     }
 
+    private int getRowFromBoardSize(String boardSize) {
+        char charRow = boardSize.charAt(0);
+        int row = Character.getNumericValue(charRow);
+        return row;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private int getColFromBoardSize(String boardSize) {
+        if (boardSize.length() == 5) {
+            char charCol = boardSize.charAt(4);
+            int col = Character.getNumericValue(charCol);
+            return col;
+        }
+        char[] boardSizeArray = boardSize.toCharArray();
+        String charCol = "" + boardSizeArray[4] + boardSizeArray[5];
+        int col = Integer.valueOf(charCol);
+        return col;
+    }
 
 }
