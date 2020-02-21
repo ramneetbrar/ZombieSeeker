@@ -112,4 +112,8 @@ public class GameLogic {
         gameBoard[cell.getRow()][cell.getColumn()].setClicked(true);
 
     }
+
+    public int getCurrentZombiesCounter() {
+        return currentZombiesCounter;
+    }
 }
