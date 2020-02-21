@@ -99,6 +99,7 @@ public class GameScreen extends AppCompatActivity {
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
             Resources resource = getResources();
             button.setBackground(new BitmapDrawable(resource, scaledBitmap));
+            gameLogic.updateCellClicked(updatedCell);
             if (updatedCell.isClicked()) {
                 int zombieScan = updatedCell.getScanOfZombies();
                 button.setText(zombieScan + "");
@@ -107,7 +108,7 @@ public class GameScreen extends AppCompatActivity {
             int zombieScan = updatedCell.getScanOfZombies();
             button.setText(zombieScan + "");
         }
-    } 
+    }
 
     private void lockButtonSizes() {
         for (int row = 0; row < NUM_ROWS; row++) {

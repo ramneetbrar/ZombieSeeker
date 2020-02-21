@@ -51,7 +51,7 @@ public class GameLogic {
                 insertCellInGameBoard(userInputInGameBoard);
             } else {
                 //need to keep updating the cells to decrement
-                userInputInGameBoard.setClicked(true);
+//                userInputInGameBoard.setClicked(true);
                 updateScans(userInputInGameBoard);
                 insertCellInGameBoard(userInputInGameBoard);
                 currentZombiesCounter++;
@@ -106,5 +106,10 @@ public class GameLogic {
                 cell.setScanOfZombies(temp - 1);
             }
         }
+    }
+
+    public void updateCellClicked(Cell cell){
+        gameBoard[cell.getRow()][cell.getColumn()].setClicked(true);
+
     }
 }
