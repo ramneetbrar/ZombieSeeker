@@ -91,16 +91,15 @@ public class GameScreen extends AppCompatActivity {
         Cell updatedCell = gameLogic.getCellFromGameBoard(row, col);
 
         if (updatedCell.hasZombie()){
-            if (updatedCell.isClicked()){
+            int newWidth = button.getWidth();
+            int newHeight = button.getHeight();
+            Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.zombie_walking);
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
+            Resources resource = getResources();
+            button.setBackground(new BitmapDrawable(resource, scaledBitmap));
+            if (updatedCell.isClicked()) {
                 int zombieScan = updatedCell.getScanOfZombies();
                 button.setText(zombieScan + "");
-            } else {
-                int newWidth = button.getWidth();
-                int newHeight = button.getHeight();
-                Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.zombie_walking);
-                Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
-                Resources resource = getResources();
-                button.setBackground(new BitmapDrawable(resource, scaledBitmap));
             }
         } else {
             int zombieScan = updatedCell.getScanOfZombies();
