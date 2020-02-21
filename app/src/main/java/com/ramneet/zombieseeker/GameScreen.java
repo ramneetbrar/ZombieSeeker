@@ -142,6 +142,7 @@ public class GameScreen extends AppCompatActivity {
                 int zombieScan = updatedCell.getScanOfZombies();
                 button.setText(zombieScan + "");
                 button.setTextSize(20);
+                button.setTextColor(Color.rgb(105, 12, 12));
             }
             gameLogic.updateCellClicked(updatedCell);
             updateScansInUI(updatedCell);
@@ -149,6 +150,7 @@ public class GameScreen extends AppCompatActivity {
             int zombieScan = updatedCell.getScanOfZombies();
             button.setText(zombieScan + "");
             button.setTextSize(20);
+            button.setTextColor(Color.rgb(105, 12, 12));
         }
 
         if (didPlayerWin()){
@@ -188,6 +190,7 @@ public class GameScreen extends AppCompatActivity {
                 numScan = gameLogic.scanZombies(temp);
                 buttons[cellRow][i].setText(numScan + "");
                 buttons[cellRow][i].setTextSize(20);
+                buttons[cellRow][i].setTextColor(Color.rgb(105, 12, 12));
             }
         }
 
@@ -197,6 +200,7 @@ public class GameScreen extends AppCompatActivity {
                 numScan = gameLogic.scanZombies(temp);
                 buttons[i][cellCol].setText(numScan + "");
                 buttons[i][cellCol].setTextSize(20);
+                buttons[i][cellCol].setTextColor(Color.rgb(105, 12, 12));
             }
         }
 
