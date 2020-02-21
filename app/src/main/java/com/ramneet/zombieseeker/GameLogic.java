@@ -1,5 +1,7 @@
 package com.ramneet.zombieseeker;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class GameLogic {
@@ -10,6 +12,16 @@ public class GameLogic {
     private int totalZombies;
     private int currentZombiesCounter;
 
+//    public static void main(String[] args) {
+//        GameLogic gameLogic = new GameLogic(4, 6,6);
+//        gameLogic.initializeGameBoard(4, 6, 6);
+//
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 6; j++) {
+//                System.out.println(gameLogic.gameBoard[i][j]);
+//            }
+//        }
+//    }
 //    public void playGame(Cell userInput){
 //        while (currentZombiesCounter != totalZombies){
 //            updateUserInputInGameBoard(userInput);
@@ -34,6 +46,7 @@ public class GameLogic {
                 insertCellInGameBoard(new Cell(i, j, false, false, false, 0));
             }
         }
+        setupZombies();
         currentZombiesCounter = 0;
     }
 

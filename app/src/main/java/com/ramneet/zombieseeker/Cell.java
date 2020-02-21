@@ -12,6 +12,18 @@ class Cell {
         return isClicked;
     }
 
+    @Override
+    public String toString() {
+        return "Cell{" +
+                "row=" + row +
+                ", column=" + column +
+                ", hasZombie=" + hasZombie +
+                ", hasScan=" + hasScan +
+                ", isClicked=" + isClicked +
+                ", scanOfZombies=" + scanOfZombies +
+                '}';
+    }
+
     public void setClicked(boolean clicked) {
         isClicked = clicked;
     }

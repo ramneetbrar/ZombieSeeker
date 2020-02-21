@@ -1,11 +1,7 @@
 package com.ramneet.zombieseeker;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +10,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Random;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class GameScreen extends AppCompatActivity {
 
@@ -32,8 +27,6 @@ public class GameScreen extends AppCompatActivity {
         return intent;
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +34,12 @@ public class GameScreen extends AppCompatActivity {
 
         gameLogic = new GameLogic(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
         gameLogic.initializeGameBoard(NUM_ROWS, NUM_COLS, NUM_ZOMBIES);
-        //gameLogic.setupZombies();
+        gameLogic.setupZombies();
         populateButtons();
-
     }
 
-
     private void populateButtons() {
-        TableLayout table = (TableLayout) findViewById(R.id.tableForButtons);
+        TableLayout table = findViewById(R.id.tableForButtons);
 
         for (int row = 0; row < NUM_ROWS; row++) {
             TableRow tableRow = new TableRow(this);
@@ -80,7 +71,6 @@ public class GameScreen extends AppCompatActivity {
                         gridButtonClicked(FINAL_ROW, FINAL_COL);
                     }
                 });
-
                 tableRow.addView(button);
                 buttons[row][col] = button;
             }
@@ -93,7 +83,6 @@ public class GameScreen extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
         Button button = buttons[row][col];
 
-
         Cell cell = gameLogic.getCellFromGameBoard(row,col);
         if (cell.hasZombie() && !cell.isClicked()) {
             button.setBackgroundResource(R.drawable.zombie_walking);
@@ -104,9 +93,5 @@ public class GameScreen extends AppCompatActivity {
             int numZombiesInScan = cell.getScanOfZombies();
             button.setText(numZombiesInScan + "");
         }
-
     }
-
-
-
 }

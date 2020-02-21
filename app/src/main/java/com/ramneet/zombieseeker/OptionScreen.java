@@ -40,7 +40,7 @@ public class OptionScreen extends AppCompatActivity {
             final int numZombie = num_Zombies[i];
 
             RadioButton button = new RadioButton(this);
-            button.setText(getString(R.string.zombies, numZombie));
+//            button.setText(getString(R.string.zombies, numZombie));
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
