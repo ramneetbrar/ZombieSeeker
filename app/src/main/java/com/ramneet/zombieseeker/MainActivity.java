@@ -10,6 +10,9 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+//popup: https://www.youtube.com/watch?v=0DH2tZjJtm0
+
 public class MainActivity extends AppCompatActivity {
 
     private int NUM_ROWS = 4;

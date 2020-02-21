@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="435dp"
+    android:layout_height="290dp"
+    android:layout_gravity="center"
+    android:background="@color/colorPrimary"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="11dp"
+        android:background="@drawable/circle_background"
+        android:gravity="center"
+        android:text="X"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <TextView
+        android:id="@+id/gameOver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:fontFamily="monospace"
+        android:text="Game Over"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/congrats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="12dp"
+        android:text="You Won !"
+        android:textColor="#020202"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/gameOver"
+        app:layout_constraintTop_toBottomOf="@+id/gameOver" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="280dp"
+        android:layout_height="164dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameOver"
+        app:srcCompat="@drawable/zombie_knife" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/blood_splatter" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="326dp"
+        android:layout_height="225dp"
+        android:layout_marginEnd="208dp"
+        android:layout_marginBottom="120dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/spot_blood_drip" />
+
+    <!--    <androidx.appcompat.widget.LinearLayoutCompat-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        <ImageView-->
+    <!--            android:layout_width=""-->
+    <!--            android:layout_height=""-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
