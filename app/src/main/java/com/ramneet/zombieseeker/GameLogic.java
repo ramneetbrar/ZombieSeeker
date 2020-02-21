@@ -95,15 +95,15 @@ public class GameLogic {
     public void updateScans(Cell cell) {
         for (int i = 0; i <column; i++) {
             if (gameBoard[cell.getRow()][i].hasScan()) {
-                int temp = cell.getScanOfZombies();
-                cell.setScanOfZombies(temp - 1);
+                int temp = cell.getScanOfZombies() - 1;
+                gameBoard[cell.getRow()][i].setScanOfZombies(temp);
             }
         }
 
         for (int i = 0; i <row; i++) {
             if (gameBoard[i][cell.getColumn()].hasScan()) {
-                int temp = cell.getScanOfZombies();
-                cell.setScanOfZombies(temp - 1);
+                int temp = cell.getScanOfZombies() - 1;
+                gameBoard[i][cell.getColumn()].setScanOfZombies(temp);
             }
         }
     }

@@ -82,8 +82,8 @@ public class GameScreen extends AppCompatActivity {
 
     private void gridButtonClicked(int row, int col) {
         Log.e(TAG, "After button clicked, in gridButton method");
-        Toast.makeText(this, "Button clicked: " + col + "," + row,
-                Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Button clicked: " + col + "," + row,
+               // Toast.LENGTH_SHORT).show();
         Button button = buttons[row][col];
 
         lockButtonSizes();
@@ -99,11 +99,12 @@ public class GameScreen extends AppCompatActivity {
             Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
             Resources resource = getResources();
             button.setBackground(new BitmapDrawable(resource, scaledBitmap));
-            gameLogic.updateCellClicked(updatedCell);
             if (updatedCell.isClicked()) {
                 int zombieScan = updatedCell.getScanOfZombies();
                 button.setText(zombieScan + "");
             }
+            gameLogic.updateCellClicked(updatedCell);
+            updateScansInUI(updatedCell);
         } else {
             int zombieScan = updatedCell.getScanOfZombies();
             button.setText(zombieScan + "");
@@ -124,6 +125,33 @@ public class GameScreen extends AppCompatActivity {
                 button.setMaxHeight(height);
             }
         }
+    }
+
+    private void updateScansInUI(Cell cell){
+        int cellRow = cell.getRow();
+        int cellCol = cell.getColumn();
+
+        Cell temp;
+
+        int numScan;
+
+
+        for (int i = 0; i < NUM_COLS; i++) {
+            temp = gameLogic.getCellFromGameBoard(cellRow, i);
+            if (temp.hasScan() && (temp.getScanOfZombies()!= 0) ){
+                numScan = gameLogic.scanZombies(temp);
+                buttons[cellRow][i].setText(numScan + "");
+            }
+        }
+
+        for (int i = 0; i < NUM_ROWS; i++) {
+            temp = gameLogic.getCellFromGameBoard(i, cellCol);
+            if (temp.hasScan() && (temp.getScanOfZombies()!= 0) ){
+                numScan = gameLogic.scanZombies(temp);
+                buttons[i][cellCol].setText(numScan + "");
+            }
+        }
+
     }
 
 
