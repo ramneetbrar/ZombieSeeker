@@ -86,6 +86,8 @@ public class GameScreen extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
         Button button = buttons[row][col];
 
+        lockButtonSizes();
+
         Cell cell = gameLogic.getCellFromGameBoard(row,col);
         gameLogic.updateUserInputInGameBoard(cell);
         Cell updatedCell = gameLogic.getCellFromGameBoard(row, col);
@@ -105,28 +107,23 @@ public class GameScreen extends AppCompatActivity {
             int zombieScan = updatedCell.getScanOfZombies();
             button.setText(zombieScan + "");
         }
-//        if (cell.hasZombie() && !cell.isClicked()) {
-//            gameLogic.updateScans(cell);
-//            int newWidth = button.getWidth();
-//            int newHeight = button.getHeight();
-//            Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.zombie_walking);
-//            Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
-//            Resources resource = getResources();
-//            button.setBackground(new BitmapDrawable(resource, scaledBitmap));
-//        }
-//        if (!cell.hasZombie() || (cell.hasZombie() && cell.isClicked()) ){
-//            if (cell.hasZombie()){
-//
-//            }
-//            gameLogic.scanZombies(cell);
-//            int numZombiesInScan = cell.getScanOfZombies();
-//            button.setText(numZombiesInScan + "");
-//        }
     }
 
+    private void lockButtonSizes() {
+        for (int row = 0; row < NUM_ROWS; row++) {
+            for (int col = 0; col < NUM_COLS; col++) {
+                Button button = buttons[row][col];
 
+                int width = button.getWidth();
+                button.setMinWidth(width);
+                button.setMaxWidth(width);
 
-
+                int height = button.getHeight();
+                button.setMinHeight(height);
+                button.setMaxHeight(height);
+            }
+        }
+    }
 
 
 }
