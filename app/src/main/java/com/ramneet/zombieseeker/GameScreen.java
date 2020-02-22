@@ -12,13 +12,15 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
+import com.ramneet.zombieseeker.model.MyBounceInterpolator;
 
 public class GameScreen extends AppCompatActivity {
 
@@ -126,8 +128,6 @@ public class GameScreen extends AppCompatActivity {
 
     private void gridButtonClicked(int row, int col) {
         Log.e(TAG, "After button clicked, in gridButton method");
-        //Toast.makeText(this, "Button clicked: " + col + "," + row,
-               // Toast.LENGTH_SHORT).show();
         Button button = buttons[row][col];
 
         lockButtonSizes();
@@ -150,9 +150,10 @@ public class GameScreen extends AppCompatActivity {
             if (updatedCell.isClicked()) {
                 num_scans++;
                 int zombieScan = updatedCell.getScanOfZombies();
+                makeButtonsBounce(updatedCell);
                 button.setText(zombieScan + "");
-                button.setTextSize(20);
-                button.setTextColor(Color.rgb(105, 12, 12));
+                button.setTextSize(16);
+                button.setTextColor(Color.rgb(255, 255, 255));
             } else {
                 num_zombies_found = gameLogic.getCurrentZombiesCounter();
             }
@@ -161,14 +162,29 @@ public class GameScreen extends AppCompatActivity {
         } else {
             num_scans++;
             int zombieScan = updatedCell.getScanOfZombies();
+            makeButtonsBounce(updatedCell);
             button.setText(zombieScan + "");
-            button.setTextSize(20);
+            button.setTextSize(16);
             button.setTextColor(Color.rgb(105, 12, 12));
         }
 
         if (didPlayerWin()){
             showDialog();
-//            Toast.makeText(this, "Person won !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void makeButtonsBounce(Cell cell){
+        final Animation animation = AnimationUtils.loadAnimation(this, R.anim.bounce);
+
+        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
+        animation.setInterpolator(interpolator);
+
+        for (int i = 0; i < num_cols; i++) {
+            buttons[cell.getRow()][i].startAnimation(animation);
+        }
+
+        for (int i = 0; i < num_rows; i++) {
+            buttons[i][cell.getColumn()].startAnimation(animation);
         }
     }
 
@@ -193,17 +209,13 @@ public class GameScreen extends AppCompatActivity {
         int cellCol = cell.getColumn();
 
         Cell temp;
-
         int numScan;
-
 
         for (int i = 0; i < num_cols; i++) {
             temp = gameLogic.getCellFromGameBoard(cellRow, i);
             if (temp.hasScan() && (temp.getScanOfZombies()!= 0) ){
                 numScan = gameLogic.scanZombies(temp);
                 buttons[cellRow][i].setText(numScan + "");
-                buttons[cellRow][i].setTextSize(20);
-                buttons[cellRow][i].setTextColor(Color.rgb(105, 12, 12));
             }
         }
 
@@ -212,11 +224,8 @@ public class GameScreen extends AppCompatActivity {
             if (temp.hasScan() && (temp.getScanOfZombies()!= 0) ){
                 numScan = gameLogic.scanZombies(temp);
                 buttons[i][cellCol].setText(numScan + "");
-                buttons[i][cellCol].setTextSize(20);
-                buttons[i][cellCol].setTextColor(Color.rgb(105, 12, 12));
             }
         }
-
     }
 
     private void setupCountTextDisplays() {
@@ -230,6 +239,4 @@ public class GameScreen extends AppCompatActivity {
     private boolean didPlayerWin(){
         return gameLogic.getCurrentZombiesCounter() == num_zombies;
     }
-
-
 }
