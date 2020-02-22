@@ -8,17 +8,6 @@ class Cell {
     private boolean isClicked; //then in the ui, if this is true, it'll print, else, it wont
     private int scanOfZombies;
 
-    @Override
-    public String toString() {
-        return "Cell{" +
-                "row=" + row +
-                ", column=" + column +
-                ", hasZombie=" + hasZombie +
-                ", hasScan=" + hasScan +
-                ", isClicked=" + isClicked +
-                ", scanOfZombies=" + scanOfZombies +
-                '}';
-    }
 
     public boolean isClicked() {
         return isClicked;
