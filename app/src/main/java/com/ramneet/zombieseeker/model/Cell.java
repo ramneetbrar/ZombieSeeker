@@ -1,11 +1,14 @@
 package com.ramneet.zombieseeker.model;
 
+/**
+ * The Cell class stores relevant information relating to each cell on the game board.
+ */
 public class Cell {
     private int row;
     private int column;
     private boolean hasZombie;
     private boolean hasScan;
-    private boolean isClicked; //then in the ui, if this is true, it'll print, else, it wont
+    private boolean isClicked;
     private int scanOfZombies;
 
 
@@ -63,10 +66,4 @@ public class Cell {
                 column == cell.column;
     }
 
-    //when i overrided the equals operator, it gave me this but im not sure what it is and it gives
-    //an error at "hash" you can uncomment and check if youwant
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(row, column);
-//    }
 }

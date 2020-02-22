@@ -2,6 +2,9 @@ package com.ramneet.zombieseeker.model;
 
 //https://evgenii.com/blog/spring-button-animation-on-android/
 
+/**
+ * Takes care of the mathematical operations needed for the scanning animation.
+ */
 public class MyBounceInterpolator implements android.view.animation.Interpolator {
     private double mAmplitude;
     private double mFrequency;

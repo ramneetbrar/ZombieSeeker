@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,14 +17,16 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.ramneet.zombieseeker.R;
 import com.ramneet.zombieseeker.model.Cell;
 import com.ramneet.zombieseeker.model.GameLogic;
 import com.ramneet.zombieseeker.model.MyBounceInterpolator;
 
+/**
+ * GameScreen activity links with the GameLogic class to create the game board and interacts with
+ * the user.
+ */
 public class GameScreen extends AppCompatActivity {
 
     private static final String EXTRA_NUM_ROWS = "zombieseeker.gameScreen.numRows";
@@ -36,10 +37,9 @@ public class GameScreen extends AppCompatActivity {
     private int num_zombies;
     private int num_zombies_found = 0;
     private int num_scans = 0;
-    private static final String TAG = "GameScreen";
-
     Button[][] buttons;
     GameLogic gameLogic;
+    Dialog dialog;
 
     public static Intent makeLaunchIntent(Context context, int rows, int cols, int numZombies) {
         Intent intent = new Intent(context, GameScreen.class);
@@ -49,8 +49,6 @@ public class GameScreen extends AppCompatActivity {
         return intent;
     }
 
-    Dialog dialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +56,6 @@ public class GameScreen extends AppCompatActivity {
         dialog = new Dialog(this);
 
         extractDataFromIntent();
-        String msg = "Rows: " + num_rows + " Cols: " + num_cols + " Zombies: " + num_zombies;
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
         buttons = new Button[num_rows][num_cols];
 
         gameLogic = new GameLogic(num_rows, num_cols, num_zombies);
@@ -105,7 +101,6 @@ public class GameScreen extends AppCompatActivity {
                 final int FINAL_ROW = row;
 
                 Button button = new Button(this);
-                //button.setBackgroundResource(R.drawable.zombie_walking);
                 button.setLayoutParams(new TableRow.LayoutParams(
                         TableRow.LayoutParams.MATCH_PARENT,
                         TableRow.LayoutParams.MATCH_PARENT,
@@ -113,25 +108,20 @@ public class GameScreen extends AppCompatActivity {
 
                 // Make text not clip on small buttons
                 button.setPadding(0, 0, 0, 0);
-
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Log.e(TAG, "After button clicked, in setOnClickListener");
                         gridButtonClicked(FINAL_ROW, FINAL_COL);
                         setupCountTextDisplays();
-                        Log.e(TAG, "Num Scans: " + num_scans);
                     }
                 });
                 tableRow.addView(button);
-                Log.e(TAG, "Row: " + row + "Col: " + col);
                 buttons[row][col] = button;
             }
         }
     }
 
     private void gridButtonClicked(int row, int col) {
-        Log.e(TAG, "After button clicked, in gridButton method");
         Button button = buttons[row][col];
 
         lockButtonSizes();
@@ -148,7 +138,6 @@ public class GameScreen extends AppCompatActivity {
             Resources resource = getResources();
             button.setBackground(new BitmapDrawable(resource, scaledBitmap));
             // Code tutorial from: https://www.stechies.com/add-sound-play-button-click/
-            // MP3 Sound Citation: http://soundbible.com/944-Stab.html
             final MediaPlayer mp = MediaPlayer.create(this, R.raw.zombie_stab);
             mp.start();
             if (updatedCell.isClicked()) {

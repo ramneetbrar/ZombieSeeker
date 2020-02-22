@@ -11,10 +11,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.ramneet.zombieseeker.R;
 
+/**
+ *  The OptionScreen activity allows the user to set the game board size and choose the number
+ *  of zombies they would like present on the game board, and passes this information back to
+ *  MainActivity and GameScreen.
+ */
 public class OptionScreen extends AppCompatActivity {
 
     public static Intent makeLaunchIntent(Context context) {
@@ -30,13 +34,6 @@ public class OptionScreen extends AppCompatActivity {
         createRadioButtonsNumZombies();
         createRadioButtonsBoardSize();
         setupSaveSelectedButton();
-
-        int savedZombie = getNumZombiesChosen(this);
-        String savedBoardSize = getBoardSizeChosen(this);
-
-
-        Toast.makeText(this, "Saved Zombie: " + savedZombie, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "Saved Board Size: " + savedBoardSize, Toast.LENGTH_SHORT).show();
     }
 
     private void createRadioButtonsNumZombies() {
@@ -53,14 +50,10 @@ public class OptionScreen extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(OptionScreen.this, "You clicked " + numZombie + " zombies.", Toast.LENGTH_SHORT)
-                            .show();
-
                     saveNumZombiesChosen(numZombie);
                 }
             });
 
-            // add to radio group:
             group.addView(button);
 
             // Select default button:
@@ -85,8 +78,6 @@ public class OptionScreen extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(OptionScreen.this, "You clicked " + board_size + " board size.", Toast.LENGTH_SHORT)
-                            .show();
                     saveBoardSizeChosen(board_size);
                 }
             });
@@ -134,6 +125,7 @@ public class OptionScreen extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Extract Data from UI:
                 RadioGroup group_num_zombies = findViewById(R.id.radio_group_num_zombies);
                 int idOfSelectedZombie = group_num_zombies.getCheckedRadioButtonId();
                 RadioButton radioButtonZombie = findViewById(idOfSelectedZombie);
@@ -145,14 +137,6 @@ public class OptionScreen extends AppCompatActivity {
                 String boardSize = radioButtonBoardSize.getText().toString();
                 int rows = getRowFromBoardSize(boardSize);
                 int cols = getColFromBoardSize(boardSize);
-
-                Toast.makeText(OptionScreen.this, "NumZombies are: " + numZombies, Toast.LENGTH_SHORT)
-                        .show();
-
-                Toast.makeText(OptionScreen.this, "Rows are: " + rows + " Cols are: " + cols, Toast.LENGTH_SHORT)
-                        .show();
-
-                // Extract Data from UI:
 
                 //Pass data back:
                 Intent intent = new Intent();

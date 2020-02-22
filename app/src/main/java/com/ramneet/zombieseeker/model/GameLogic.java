@@ -2,6 +2,11 @@ package com.ramneet.zombieseeker.model;
 
 import java.util.ArrayList;
 
+/**
+ * The GameLogic class initializes the gameBoard, and keeps it up to date with the users moves.
+ * Exposes the relevant information to UI classes to be displayed on the device.
+ */
+
 public class GameLogic {
 
     private int row;
@@ -15,11 +20,6 @@ public class GameLogic {
         this.column = column;
         this.gameBoard = new Cell[row][column];
         this.totalZombies = totalZombies;
-        //initializeGameBoard(row, column, totalZombies);
-    }
-
-    public Cell[][] getGameBoard() {
-        return gameBoard;
     }
 
     public void initializeGameBoard(int row, int column){
@@ -39,7 +39,6 @@ public class GameLogic {
     }
 
     public void updateUserInputInGameBoard(Cell userInput){
-        //Cell userInputInGameBoard = gameBoard[row][col];
         Cell userInputInGameBoard = gameBoard[userInput.getRow()][userInput.getColumn()];
 
         if (userInputInGameBoard.hasZombie()){
@@ -48,8 +47,6 @@ public class GameLogic {
                 userInputInGameBoard.setScanOfZombies(scanZombies(userInputInGameBoard));
                 insertCellInGameBoard(userInputInGameBoard);
             } else {
-                //need to keep updating the cells to decrement
-//                userInputInGameBoard.setClicked(true);
                 updateScans(userInputInGameBoard);
                 insertCellInGameBoard(userInputInGameBoard);
                 currentZombiesCounter++;

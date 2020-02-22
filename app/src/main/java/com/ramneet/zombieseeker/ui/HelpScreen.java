@@ -6,13 +6,14 @@ import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
-
 import com.ramneet.zombieseeker.R;
 
+/**
+ * The HelpScreen Activity displays information about the author, the app and some citations.
+ */
+
 public class HelpScreen extends AppCompatActivity {
-//
-//    TextView hyperLink;
-//    Spanned text;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,27 +47,5 @@ public class HelpScreen extends AppCompatActivity {
 
         citationThreeHyperlink.setMovementMethod(LinkMovementMethod.getInstance());
         citationThreeHyperlink.setText(Text);
-
-//        TextView citationOneHyperlink = findViewById(R.id.citation1);
-//        Text = Html.fromHtml("Zombie GIF link  <br />" +
-//                "<a href='https://i.pinimg.com/originals/5c/cf/da/5ccfdaddef13b6dcd7122f20e6f551f1.gif'>Zombie GIF</a>");
-//
-//        citationOneHyperlink.setMovementMethod(LinkMovementMethod.getInstance());
-//        citationOneHyperlink.setText(Text);
-//
-//        TextView citationTwoHyperlink = findViewById(R.id.citation2);
-//        Text = Html.fromHtml("Background image link  <br />" +
-//                "<a href='https://cdn.hipwallpaper.com/i/31/45/V2zRmh.jpg'>Grey Background Image</a>");
-//
-//        citationTwoHyperlink.setMovementMethod(LinkMovementMethod.getInstance());
-//        citationTwoHyperlink.setText(Text);
-//
-//        TextView citationThreeHyperlink = findViewById(R.id.citation3);
-//        Text = Html.fromHtml("Background image link  <br />" +
-//                "<a href='https://cdn.imgbin.com/12/21/25/imgbin-cartoon-zombie-zombie-KnZgwiBDaSSM4EHi72XqdSCU3.jpg'>Green Zombie</a>");
-//
-//        citationThreeHyperlink.setMovementMethod(LinkMovementMethod.getInstance());
-//        citationThreeHyperlink.setText(Text);
-
     }
 }

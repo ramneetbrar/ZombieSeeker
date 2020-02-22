@@ -1,10 +1,11 @@
 package com.ramneet.zombieseeker.model;
 
-import com.ramneet.zombieseeker.model.Cell;
-
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Inputs the zombies into the gameboard in a random order.
+ */
 public class Zombie {
 
     private ArrayList<Cell> zombies = new ArrayList<>();
@@ -21,7 +22,6 @@ public class Zombie {
         for (Cell zombie : zombies) {
             gameBoard[zombie.getRow()][zombie.getColumn()] = zombie;
         }
-//        Log.d("Zombie", "in input zombie");
     }
 
     public void initializeZombies(int row, int column, int numberOfZombies, Cell gameBoard[][]) {

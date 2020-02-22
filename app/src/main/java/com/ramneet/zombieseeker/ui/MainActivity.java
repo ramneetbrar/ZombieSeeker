@@ -12,8 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ramneet.zombieseeker.R;
 
-
+/**
+ *  MainActivity allows the user to navigate to the help, game and options screens. Recieves data
+ *  from the OptionScreen and passes it to the GameScreen to update user preferences.
+ */
 //popup: https://www.youtube.com/watch?v=0DH2tZjJtm0
+// MP3 Sound Citation: http://soundbible.com/944-Stab.html
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,9 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private int NUM_COLS = 6;
     private int NUM_ZOMBIES = 6;
     public static final int REQUEST_CODE_GET_VALUES = 1111;
-
-    Button buttons[][] = new Button[NUM_ROWS][NUM_COLS];
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         setupHelpScreen();
         setupOptionScreen();
         refreshScreen();
-//        setupMainMenu();
     }
 
 
@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshScreen() {
-        // refresh num zombies
         NUM_ZOMBIES = OptionScreen.getNumZombiesChosen(this);
 
     }
