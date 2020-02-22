@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/zombie_background"
-    tools:context=".HelpScreen">
+    tools:context=".ui.HelpScreen">
 
     <ImageView
         android:id="@+id/bloodSplatter2"

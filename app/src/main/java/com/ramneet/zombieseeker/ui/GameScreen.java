@@ -1,4 +1,4 @@
-package com.ramneet.zombieseeker;
+package com.ramneet.zombieseeker.ui;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -20,6 +20,10 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.ramneet.zombieseeker.R;
+import com.ramneet.zombieseeker.model.Cell;
+import com.ramneet.zombieseeker.model.GameLogic;
 import com.ramneet.zombieseeker.model.MyBounceInterpolator;
 
 public class GameScreen extends AppCompatActivity {

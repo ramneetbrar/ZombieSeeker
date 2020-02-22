@@ -1,4 +1,4 @@
-package com.ramneet.zombieseeker;
+package com.ramneet.zombieseeker.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.ramneet.zombieseeker.R;
 
 public class OptionScreen extends AppCompatActivity {
 

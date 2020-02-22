@@ -1,4 +1,4 @@
-package com.ramneet.zombieseeker;
+package com.ramneet.zombieseeker.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.ramneet.zombieseeker.R;
 
 
 //popup: https://www.youtube.com/watch?v=0DH2tZjJtm0

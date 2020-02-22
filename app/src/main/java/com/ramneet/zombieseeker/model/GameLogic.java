@@ -1,6 +1,4 @@
-package com.ramneet.zombieseeker;
-
-import android.util.Log;
+package com.ramneet.zombieseeker.model;
 
 import java.util.ArrayList;
 

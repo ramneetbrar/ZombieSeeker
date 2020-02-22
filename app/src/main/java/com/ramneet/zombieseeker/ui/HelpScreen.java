@@ -1,4 +1,4 @@
-package com.ramneet.zombieseeker;
+package com.ramneet.zombieseeker.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
+
+import com.ramneet.zombieseeker.R;
 
 public class HelpScreen extends AppCompatActivity {
 //

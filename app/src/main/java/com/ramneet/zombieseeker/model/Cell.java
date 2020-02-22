@@ -1,6 +1,6 @@
-package com.ramneet.zombieseeker;
+package com.ramneet.zombieseeker.model;
 
-class Cell {
+public class Cell {
     private int row;
     private int column;
     private boolean hasZombie;

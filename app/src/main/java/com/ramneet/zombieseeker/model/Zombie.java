@@ -1,4 +1,6 @@
-package com.ramneet.zombieseeker;
+package com.ramneet.zombieseeker.model;
+
+import com.ramneet.zombieseeker.model.Cell;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package com.ramneet.zombieseeker;
+package com.ramneet.zombieseeker.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.ramneet.zombieseeker.R;
+
 import pl.droidsonroids.gif.GifImageView;
 
 public class WelcomeScreen extends AppCompatActivity {
