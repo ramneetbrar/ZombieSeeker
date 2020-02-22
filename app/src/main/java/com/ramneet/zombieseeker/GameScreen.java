@@ -25,9 +25,11 @@ public class GameScreen extends AppCompatActivity {
     private static final String EXTRA_NUM_ROWS = "zombieseeker.gameScreen.numRows";
     private static final String EXTRA_NUM_COLS = "zombieseeker.gameScreen.numCols";
     private static final String EXTRA_NUM_ZOMBIES = "zombieseeker.gameScreen.numZombies";
-    private int num_rows = 4;
-    private int num_cols = 6;
-    private int num_zombies = 6;
+    private int num_rows;
+    private int num_cols;
+    private int num_zombies;
+    private int num_zombies_found = 0;
+    private int num_scans = 0;
     private static final String TAG = "GameScreen";
 
     Button[][] buttons;
@@ -57,6 +59,7 @@ public class GameScreen extends AppCompatActivity {
         gameLogic = new GameLogic(num_rows, num_cols, num_zombies);
         gameLogic.initializeGameBoard(num_rows, num_cols);
         populateButtons();
+        setupCountTextDisplays();
     }
 
     private void extractDataFromIntent() {
@@ -108,9 +111,10 @@ public class GameScreen extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.e(TAG, "After button clicked, in setOnClickListener");
-
+                        //Log.e(TAG, "After button clicked, in setOnClickListener");
                         gridButtonClicked(FINAL_ROW, FINAL_COL);
+                        setupCountTextDisplays();
+                        Log.e(TAG, "Num Scans: " + num_scans);
                     }
                 });
                 tableRow.addView(button);
@@ -144,14 +148,18 @@ public class GameScreen extends AppCompatActivity {
             final MediaPlayer mp = MediaPlayer.create(this, R.raw.zombie_stab);
             mp.start();
             if (updatedCell.isClicked()) {
+                num_scans++;
                 int zombieScan = updatedCell.getScanOfZombies();
                 button.setText(zombieScan + "");
                 button.setTextSize(20);
                 button.setTextColor(Color.rgb(105, 12, 12));
+            } else {
+                num_zombies_found = gameLogic.getCurrentZombiesCounter();
             }
             gameLogic.updateCellClicked(updatedCell);
             updateScansInUI(updatedCell);
         } else {
+            num_scans++;
             int zombieScan = updatedCell.getScanOfZombies();
             button.setText(zombieScan + "");
             button.setTextSize(20);
@@ -209,6 +217,14 @@ public class GameScreen extends AppCompatActivity {
             }
         }
 
+    }
+
+    private void setupCountTextDisplays() {
+        TextView zombieText = findViewById(R.id.zombieCountTextView);
+        TextView scanText = findViewById(R.id.scanCountTextView);
+
+        zombieText.setText(getString(R.string.zombie_count, num_zombies_found, num_zombies));
+        scanText.setText(getString(R.string.scan_count,num_scans));
     }
 
     private boolean didPlayerWin(){

@@ -32,6 +32,7 @@ public class OptionScreen extends AppCompatActivity {
         int savedZombie = getNumZombiesChosen(this);
         String savedBoardSize = getBoardSizeChosen(this);
 
+
         Toast.makeText(this, "Saved Zombie: " + savedZombie, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "Saved Board Size: " + savedBoardSize, Toast.LENGTH_SHORT).show();
     }
