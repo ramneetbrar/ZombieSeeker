@@ -64,9 +64,6 @@ public class GameLogic {
         }
     }
 
-    public void incrementZombiesCounter(){
-        currentZombiesCounter++;
-    }
 
     public int scanZombies(Cell cell){
         int zombieCounter = 0;
